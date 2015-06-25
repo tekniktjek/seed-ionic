@@ -1,11 +1,6 @@
-// Ionic Starter App
+angular.module('ionic-firebase-seed', ['ionic', 'firebase'])
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'firebase'])
-
-// Replace this with your own Firebase URL: https://firebase.com/signup
+// TODO: Replace this with your own Firebase URL: https://firebase.com/signup
 .constant('FBURL', 'https://ionic-fb-seed.firebaseio.com/')
 
 .factory('Auth', function($firebaseAuth, FBURL) {
@@ -18,9 +13,9 @@ angular.module('starter', ['ionic', 'firebase'])
   return $firebaseArray(ref);
 })
 
-.controller('MessageCtrl', function($scope, $ionicModal, Auth, Messages) {
+.controller('AppCtrl', function($scope, $ionicModal, Auth, Messages) {
 
-  $scope.messages = Messages;
+  // MODALS
 
   // Create all of the modals
   var modals = ['message', 'login', 'signup'];
@@ -47,7 +42,9 @@ angular.module('starter', ['ionic', 'firebase'])
     $scope[modalType + 'Modal'].hide();
   };
 
-  // check for user's authentication status
+  // EMAIL & PASSWORD AUTHENTICATION
+
+  // Check for the user's authentication state
   Auth.$onAuth(function(authData) {
     if (authData) {
       $scope.loggedInUser = authData;
@@ -56,48 +53,51 @@ angular.module('starter', ['ionic', 'firebase'])
     }
   });
 
-  // create a new user
+  // Create a new user, called when a user submits the signup form
   $scope.createUser = function(user) {
     Auth.$createUser({
       email: user.email,
       password: user.pass
     }).then(function(userData) {
+      // User created successfully, log them in
       return Auth.$authWithPassword({
         email: user.email,
         password: user.pass
       });
     }).then(function(authData) {
-      // logged in successfully
-      console.log(authData);
+      console.log('Logged in successfully as: ', authData.uid);
       $scope.loggedInUser = authData;
       $scope.closeModal('signup');
     }).catch(function(error) {
-      // error logging in
-      console.log(error);
+      console.log('Error: ', error);
     });
   };
 
-  // login a user
+  // Login an existing user, called when a user submits the login form
   $scope.login = function(user) {
     Auth.$authWithPassword({
       email: user.email,
       password: user.pass
     }).then(function(authData) {
-      //successful
-      console.log('logged in as: ', authData);
+      console.log('Logged in successfully as: ', authData.uid);
       $scope.loggedInUser = authData;
       $scope.closeModal('login');
     }).catch(function(error) {
-      // auth failed
+      console.log('Error: ', error);
     });
   };
 
-  // unauth a user
+  // Log a user out
   $scope.logout = function() {
     Auth.$unauth();
   };
 
-  // add a message
+  // ADD MESSAGES TO A SYNCHRONIZED ARRAY
+
+  // Bind messages to the scope
+  $scope.messages = Messages;
+
+  // Add a message to a synchronized array using $add with $firebaseArray
   $scope.addMessage = function(message) {
     if ($scope.loggedInUser) {
       Messages.$add({
@@ -122,4 +122,4 @@ angular.module('starter', ['ionic', 'firebase'])
       StatusBar.styleDefault();
     }
   });
-})
+});
