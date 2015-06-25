@@ -71,7 +71,7 @@ angular.module('starter', ['ionic', 'firebase'])
       // logged in successfully
       console.log(authData);
       $scope.loggedInUser = authData;
-      $scope.closeModal();
+      $scope.closeModal('signup');
     }).catch(function(error) {
       // error logging in
       console.log(error);
@@ -87,7 +87,7 @@ angular.module('starter', ['ionic', 'firebase'])
       //successful
       console.log('logged in as: ', authData);
       $scope.loggedInUser = authData;
-      $scope.closeModal();
+      $scope.closeModal('login');
     }).catch(function(error) {
       // auth failed
     });
@@ -106,7 +106,7 @@ angular.module('starter', ['ionic', 'firebase'])
         text: message.text
       });
       message.text = "";
-      $scope.closeModal();
+      $scope.closeModal('message');
     }
   };
 
