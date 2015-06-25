@@ -1,0 +1,8 @@
+{
+    "rules": {
+        ".read": true,
+        "messages": {
+          ".write": "auth != null"
+        }
+    }
+}
