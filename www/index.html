@@ -33,18 +33,20 @@
       <ion-header-bar class="bar-stable">
         <h1 class="title">Ionic Seed</h1>
         <button class="button" ng-click="logout()" ng-show="loggedInUser">Logout</button>
-        <button class="button button-icon ion-chatbubble" ng-click="showModal()" ng-show="loggedInUser"></button>
+        <button class="button button-icon ion-chatbubble" ng-click="showModal('message')" ng-show="loggedInUser"></button>
       </ion-header-bar>
 
       <ion-content>
 
-      <div ng-hide="loggedInUser">
-        <button class="button button-positive" ng-click="showModal('login')">
+      <div ng-hide="loggedInUser" class="row">
+        <div class="col">
+        <button class="button button-positive login" ng-click="showModal('login')">
           Login
         </button>
-        <button class="button button-positive" ng-click="showModal('signup')">
+        <button class="button button-positive signup" ng-click="showModal('signup')">
           Sign Up
         </button>
+        </div>
       </div>
 
         <div ng-show="loggedInUser">

@@ -51,7 +51,6 @@ angular.module('starter', ['ionic', 'firebase'])
   Auth.$onAuth(function(authData) {
     if (authData) {
       $scope.loggedInUser = authData;
-      console.log(authData);
     } else {
       $scope.loggedInUser = null;
     }
