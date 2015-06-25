@@ -23,13 +23,13 @@ Since Ionic is built on top of Angular, this seed application uses AngularFire.
 
 This app makes use of Firebase's [email & password authentication](https://www.firebase.com/docs/web/guide/login/password.html). To enable email & password auth, navigate to the "Login & Auth" tab in your Firebase app dashboard and select "Enable Email & Password Authentication".
 
-Once it's enabled, you're ready to start creating and authenticating users in your app. You can create users with AngularFire's `[$createUser()](https://www.firebase.com/docs/web/libraries/angular/api.html#angularfire-users-and-authentication-createusercredentials)` method, passing it an email and password. Then you'll use `$authWithPassword()` to log users in, and `$unauth()` to log users out. This app also makes use of `$onAuth` to check the user's authentication state and set `$scope.loggedInUser` to the current user.
+Once it's enabled, you're ready to start creating and authenticating users in your app. You can create users with AngularFire's [`$createUser()`](https://www.firebase.com/docs/web/libraries/angular/api.html#angularfire-users-and-authentication-createusercredentials) method, passing it an email and password. Then you'll use `$authWithPassword()` to log users in, and `$unauth()` to log users out. This app also makes use of `$onAuth` to check the user's authentication state and set `$scope.loggedInUser` to the current user.
 
 Firebase also supports authentication with Facebook, Twitter, GitHub, Google, anonymous auth, and custom authentication. Check out the docs on user authentication for details on these authentication methods.
 
 #### Adding messages to a synchronized array
 
-This app uses the `[$firebaseArray](https://www.firebase.com/docs/web/libraries/angular/guide/synchronized-arrays.html)` service to store message data in a synchronized array. Using `$firebaseArray`, our local Angular array is kept in sync with our remote Firebase data. To add items to `$firebaseArray`, use the $add() method.
+This app uses the [`$firebaseArray`](https://www.firebase.com/docs/web/libraries/angular/guide/synchronized-arrays.html) service to store message data in a synchronized array. Using `$firebaseArray`, our local Angular array is kept in sync with our remote Firebase data. To add items to `$firebaseArray`, use the $add() method.
 
 ### Running your app
 
