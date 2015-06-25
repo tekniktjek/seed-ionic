@@ -3,7 +3,7 @@ Ionic + Firebase Seed App
 
 This is a seed application to help you get started building apps with [Ionic](http://ionicframework.com/) and Firebase. Using [AngularFire](https://www.firebase.com/docs/web/libraries/angular/), this app implements email & password authentication and adds messages to a synchronized array. The app is built using the [Ionic CLI](http://ionicframework.com/docs/cli/).
 
-### Getting Started
+## Getting Started
 
 To run this app you need to have the Ionic CLI installed. You can install it by running:
 
@@ -15,7 +15,7 @@ Once you have the CLI installed, clone this repo and run the app locally with th
 
 Replace `FBURL` with the URL of your own Firebase.
 
-### How it Works
+## How it Works
 
 Since Ionic is built on top of Angular, this seed application uses AngularFire.
 
@@ -31,17 +31,19 @@ Firebase also supports authentication with Facebook, Twitter, GitHub, Google, an
 
 This app uses the [`$firebaseArray`](https://www.firebase.com/docs/web/libraries/angular/guide/synchronized-arrays.html) service to store message data in a synchronized array. Using `$firebaseArray`, our local Angular array is kept in sync with our remote Firebase data. To add items to `$firebaseArray`, use the $add() method.
 
-### Running your app
+## Running your app
 
-You can run this app in the browser using the command `ionic serve`, or use `ionic serve --lab` to run it in the browser with a side by side iOS and Android view. To run your app in the iOS or Android emulator, follow the instructions in our [documentation](https://www.firebase.com/docs/web/libraries/ionic/guide.html#section-running-in-the-emulator).
+You can run this app in the browser using the command `ionic serve`, or use `ionic serve --lab` to run it in the browser with a side by side iOS and Android view.
 
-### Testing your app
+To run your app in the iOS or Android emulator, follow the instructions in our [documentation](https://www.firebase.com/docs/web/libraries/ionic/guide.html#section-running-in-the-emulator).
 
-### Securing your app
+## Testing your app
+
+## Securing your app
 
 This seed app has very basic security rules to ensure that only logged in users can add messages to the list. You can see them in the `rules.json` file. For more details on security rules, check out the [security quickstart](https://www.firebase.com/docs/security/quickstart.html) in our documentation.
 
-### Deploying your app
+## Deploying your app
 
 To publish your app in the iOS or Android app stores, follow the instructions in the [Ionic documentation](http://ionicframework.com/docs/guide/publishing.html).
 
