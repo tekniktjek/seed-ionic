@@ -1,0 +1,24 @@
+{
+    "rules": {
+        // .read: false is the default setting, unless I add a .read node here
+        // this means nothing in my Firebase database can be read or written by anyone
+
+        "messages": {
+          // allow anyone to read from the messages/ node
+          ".read": true,
+          // only authenticated users can write to the messages/ node
+          ".write": "auth != null",
+
+            // $variables are ...
+            "$message": {
+                // the "text" field is required when creating a message
+                ".validate": "newData.hasChild('text')",
+
+                "text": {
+                    // the message field must be a string
+                    ".validate": "newData.isString()"
+                }
+            }
+        }
+    }
+}
