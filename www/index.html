@@ -30,6 +30,7 @@
   <body ng-app="ionic-firebase-seed" ng-controller="AppCtrl">
 
     <ion-pane>
+
       <ion-header-bar class="bar-stable">
         <h1 class="title">Ionic Seed</h1>
         <button class="button" ng-click="logout()" ng-show="loggedInUser">Logout</button>
@@ -37,18 +38,27 @@
       </ion-header-bar>
 
       <ion-content>
+        <form ng-submit="login(user)">
+          <div class="list" ng-hide="loggedInUser">
 
-      <div ng-hide="loggedInUser" class="row">
-        <div class="col-offset-25">
-          <button class="button button-positive login" ng-click="showModal('login')">
-            Login
-          </button>
-          <button class="button button-positive signup" ng-click="showModal('signup')">
-            Sign Up
-          </button>
-        </div>
-      </div>
+            <label class="item item-input">
+              <input type="text" placeholder="Email" ng-model="user.email">
+            </label>
 
+            <label class="item item-input">
+              <input type="password" placeholder="Password" ng-model="user.pass">
+            </label>
+            <br/>
+            <div class="submit-btns">
+              <button class="button button-positive login" ng-click="login(user)">
+                Login
+              </button>
+              <button class="button button-positive signup" ng-click="createUser(user)">
+                Sign Up
+              </button>
+            </div>
+          </div>
+        </form>
         <div ng-show="loggedInUser">
           <div class="card" ng-repeat="message in messages | orderBy:'-time'">
             <div class="item item-text-wrap">
@@ -58,87 +68,17 @@
           </div>
         </div>
       </ion-content>
+
+      <ion-footer-bar align-title="left" ng-show="loggedInUser">
+        <label class="title">
+          <input type="text" placeholder="Message" ng-model="message.text" class="msg-input">
+        </label>
+        <button type="submit" class="button button-small" ng-click="addMessage(message)">
+          Add
+        </button>
+      </ion-footer-bar>
+
     </ion-pane>
-
-  <script id="message.html" type="text/ng-template">
-    <div class="modal">
-      <ion-header-bar class="bar-secondary">
-        <h1 class="title">New Message</h1>
-        <button class="button button-icon ion-android-close" ng-click="closeModal('message')"></button>
-      </ion-header-bar>
-
-      <ion-content>
-        <form ng-submit="addMessage(message)">
-          <div class="list">
-
-            <label class="item item-input">
-              <input type="text" placeholder="Message" ng-model="message.text">
-            </label>
-
-            <div class="padding">
-              <button type="submit" class="button button-block button-positive">Add Message</button>
-            </div>
-          </div>
-        </form>
-      </ion-content>
-    </div>
-  </script>
-
-  <script id="login.html" type="text/ng-template">
-    <div class="modal">
-      <ion-header-bar class="bar-secondary">
-        <h1 class="title">Login</h1>
-        <button class="button button-icon ion-android-close" ng-click="closeModal('login')"></button>
-      </ion-header-bar>
-
-      <ion-content>
-        <form ng-submit="login(user)">
-          <div class="list">
-
-            <label class="item item-input">
-              <input type="text" placeholder="Email" ng-model="user.email">
-            </label>
-
-            <label class="item item-input">
-              <input type="password" placeholder="Password" ng-model="user.pass">
-            </label>
-
-            <div class="padding">
-              <button type="submit" class="button button-block button-positive">Login</button>
-            </div>
-          </div>
-        </form>
-      </ion-content>
-    </div>
-  </script>
-
-  <script id="signup.html" type="text/ng-template">
-    <div class="modal">
-      <ion-header-bar class="bar-secondary">
-        <h1 class="title">Sign Up</h1>
-        <button class="button button-icon ion-android-close" ng-click="closeModal('signup')"></button>
-      </ion-header-bar>
-
-      <ion-content>
-        <form ng-submit="createUser(user)">
-          <div class="list">
-
-            <label class="item item-input">
-              <input type="text" placeholder="Email" ng-model="user.email">
-            </label>
-
-            <label class="item item-input">
-              <input type="password" placeholder="Password" ng-model="user.pass">
-            </label>
-
-            <div class="padding">
-              <button type="submit" class="button button-block button-positive">Sign Up</button>
-            </div>
-          </div>
-        </form>
-      </ion-content>
-    </div>
-  </script>
 
   </body>
 </html>

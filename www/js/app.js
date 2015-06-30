@@ -3,44 +3,17 @@ angular.module('ionic-firebase-seed', ['ionic', 'firebase'])
 // TODO: Replace this with your own Firebase URL: https://firebase.com/signup
 .constant('FBURL', 'https://ionic-fb-seed.firebaseio.com/')
 
-.factory('Auth', function($firebaseAuth, FBURL) {
-  var ref = new Firebase(FBURL);
+.factory('Auth', function($firebaseAuth, FBURL, $window) {
+  var ref = new $window.Firebase(FBURL);
   return $firebaseAuth(ref);
 })
 
-.factory('Messages', function($firebaseArray, FBURL) {
-  var ref = new Firebase(FBURL + '/messages');
+.factory('Messages', function($firebaseArray, FBURL, $window) {
+  var ref = new $window.Firebase(FBURL + '/messages');
   return $firebaseArray(ref);
 })
 
-.controller('AppCtrl', function($scope, $ionicModal, Auth, Messages) {
-
-  // MODALS
-
-  // Create all of the modals
-  var modals = ['message', 'login', 'signup'];
-
-  $scope.createModal = function(modalName) {
-    var modalURL = modalName + '.html';
-    $ionicModal.fromTemplateUrl(modalURL, function(modal) {
-      $scope[modalName + 'Modal'] = modal;
-    }, {
-      scope: $scope,
-      animation: 'slide-in-up'
-    });
-  };
-
-  angular.forEach(modals, function(modalName) {
-    $scope.createModal(modalName);
-  });
-
-  $scope.showModal = function(modalType) {
-    $scope[modalType + 'Modal'].show();
-  };
-
-  $scope.closeModal = function(modalType) {
-    $scope[modalType + 'Modal'].hide();
-  };
+.controller('AppCtrl', function($scope, Auth, Messages) {
 
   // EMAIL & PASSWORD AUTHENTICATION
 
