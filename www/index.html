@@ -32,13 +32,15 @@
     <ion-pane>
 
       <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Seed</h1>
+        <h1 class="title">
+          <div ng-hide="loggedInUser">Ionic Seed</div>
+          <div ng-show="loggedInUser">Logged in as <span id="email-header">{{loggedInUser.password.email}}</span></div>
+        </h1>
         <button class="button" ng-click="logout()" ng-show="loggedInUser">Logout</button>
-        <button class="button button-icon ion-chatbubble" ng-click="showModal('message')" ng-show="loggedInUser"></button>
       </ion-header-bar>
 
       <ion-content id="app-content">
-        <form ng-submit="login(user)">
+
           <div class="list" ng-hide="loggedInUser">
 
             <label class="item item-input">
@@ -58,8 +60,8 @@
               </button>
             </div>
           </div>
-        </form>
-        <div ng-show="loggedInUser">
+
+        <div ng-show="loggedInUser" id="message-list">
           <div class="card" ng-repeat="message in messages | orderBy:'-time'">
             <div class="item item-text-wrap">
               <span style="font-weight: bold;">{{message.email}}</span>:
@@ -73,7 +75,7 @@
         <label class="title">
           <input type="text" placeholder="Message" ng-model="message.text" class="msg-input">
         </label>
-        <button type="submit" class="button button-small" ng-click="addMessage(message)">
+        <button type="submit" class="button button-small" ng-click="addMessage(message)" id="add-message">
           Add
         </button>
       </ion-footer-bar>

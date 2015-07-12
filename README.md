@@ -41,6 +41,14 @@ This app uses the [`$firebaseArray`](https://www.firebase.com/docs/web/libraries
 
 ## Testing your app
 
+### Unit tests
+
+Unit tests can be found in `tests/Services/services.tests.js`. To run them, navigate to the `tests/` directory and run the command `karma start`. The tests check that both the `Auth` and `Messages` factories return `$firebaseAuth` and `$firebaseArray` respectively.
+
+### End-to-end tests
+
+End-to-end tests can be found in `e2e-tests/scenarios.js`. To run them, navigate to the `e2e/` directory and run the command `protractor protractor.conf.js`. The e2e tests check that the app loads correctly, logs users in, displays the messages list to logged in users, and adds a message to Firebase when the "Add" button is pressed.
+
 ## Securing your app
 
 This seed app has very basic security rules to ensure that only logged in users can add messages to the list, and that new messages are not empty. You can see them in the `rules.json` file. If you're using Firebase Hosting to deploy your application, you can deploy your security rules file to Firebase by adding a `rules` parameter to your `firebase.json` file. Check out the [hosting documentation](https://www.firebase.com/docs/hosting/guide/full-config.html#section-advanced-properties) for details on configuring this.

@@ -40,7 +40,6 @@ angular.module('ionic-firebase-seed', ['ionic', 'firebase'])
     }).then(function(authData) {
       console.log('Logged in successfully as: ', authData.uid);
       $scope.loggedInUser = authData;
-      $scope.closeModal('signup');
     }).catch(function(error) {
       console.log('Error: ', error);
     });
@@ -54,7 +53,6 @@ angular.module('ionic-firebase-seed', ['ionic', 'firebase'])
     }).then(function(authData) {
       console.log('Logged in successfully as: ', authData.uid);
       $scope.loggedInUser = authData;
-      $scope.closeModal('login');
     }).catch(function(error) {
       console.log('Error: ', error);
     });
@@ -78,7 +76,6 @@ angular.module('ionic-firebase-seed', ['ionic', 'firebase'])
         text: message.text
       });
       message.text = "";
-      $scope.closeModal('message');
     }
   };
 
