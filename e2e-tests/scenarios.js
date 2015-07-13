@@ -18,12 +18,12 @@ describe('ionic-firebase-seed', function() {
             // TODO: replace the email and password strings below
             // with a registered user in your application
             var emailField = element(by.model('user.email'));
-            emailField.sendKeys('sara@firebase.com');
+            emailField.sendKeys('test@exampl.com');
             var passwordField = element(by.model('user.pass'));
-            passwordField.sendKeys('test1234');
+            passwordField.sendKeys('password1234');
             element(by.css('.login')).click();
             setTimeout(function() {
-                expect(element(by.id('email-header')).getText()).toMatch(/sara@firebase.com/);
+                expect(element(by.id('email-header')).getText()).toMatch(/test@example.com/);
                 expect(element(by.id('message-list')).isDisplayed()).toBe(true);
                 done();
             }, 2000);
@@ -33,7 +33,8 @@ describe('ionic-firebase-seed', function() {
 
     describe('messages list', function() {
         it('adds an item to the Messages array', function(done) {
-            var testMessagesRef = new Firebase("https://ionic-fb-seed.firebaseio.com/messages");
+            // TODO: replace this with your Firebase App URL
+            var testMessagesRef = new Firebase("https://YOUR-FIREABASE-APP.firebaseio.com/messages");
             testMessagesRef.once('value', function(beforeSnap) {
                 var messageInput = element(by.model('message.text'));
                 messageInput.sendKeys('testmessage');
