@@ -1,7 +1,7 @@
 angular.module('ionic-firebase-seed', ['ionic', 'firebase'])
 
 // TODO: Replace this with your own Firebase URL: https://firebase.com/signup
-.constant('FBURL', 'https://ionic-fb-seed.firebaseio.com/')
+.constant('FBURL', 'https://YOUR-FIREABASE-APP.firebaseio.com/')
 
 .factory('Auth', function($firebaseAuth, FBURL, $window) {
   var ref = new $window.Firebase(FBURL);
@@ -31,7 +31,7 @@ angular.module('ionic-firebase-seed', ['ionic', 'firebase'])
     Auth.$createUser({
       email: user.email,
       password: user.pass
-    }).then(function(userData) {
+    }).then(function() {
       // User created successfully, log them in
       return Auth.$authWithPassword({
         email: user.email,
@@ -40,7 +40,6 @@ angular.module('ionic-firebase-seed', ['ionic', 'firebase'])
     }).then(function(authData) {
       console.log('Logged in successfully as: ', authData.uid);
       $scope.loggedInUser = authData;
-      $scope.closeModal('signup');
     }).catch(function(error) {
       console.log('Error: ', error);
     });
@@ -54,7 +53,6 @@ angular.module('ionic-firebase-seed', ['ionic', 'firebase'])
     }).then(function(authData) {
       console.log('Logged in successfully as: ', authData.uid);
       $scope.loggedInUser = authData;
-      $scope.closeModal('login');
     }).catch(function(error) {
       console.log('Error: ', error);
     });
@@ -78,16 +76,18 @@ angular.module('ionic-firebase-seed', ['ionic', 'firebase'])
         text: message.text
       });
       message.text = "";
-      $scope.closeModal('message');
     }
   };
 
 })
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, FBURL) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
+    if (FBURL === "https://YOUR-FIREABASE-APP.firebaseio.com/") {
+      angular.element(document.getElementById('app-content')).html('<h1>Please configure your Firebase URL in www/js/app.js before running!</h1>');
+    }
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }

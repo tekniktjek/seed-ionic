@@ -1,19 +1,29 @@
 Ionic + Firebase Seed App
 =========================
 
+![Logo](/www/img/starter-logo.png)
+
 This is a seed application to help you get started building apps with [Ionic](http://ionicframework.com/) and Firebase. Using [AngularFire](https://www.firebase.com/docs/web/libraries/angular/), this app implements email & password authentication and adds messages to a synchronized array. The app is built using the [Ionic CLI](http://ionicframework.com/docs/cli/).
 
-## Getting Started
+## [Getting Started](https://www.firebase.com/docs/web/libraries/ionic/guide.html)
 
-To run this app you need to have the Ionic CLI installed. You can install it by running:
+First, replace `FBURL` with the URL of your own Firebase on line 4 in `/www/js/app.js`. To run this app you need to install the Ionic CLI. Run the following commands to get started:
 
-`npm install -g ionic`
+```
+npm install -g ionic
+git clone git@github.com:sararob/ionic-seed.git
+cd ionic-seed/
+ionic serve
+```
 
-Once you have the CLI installed, clone this repo and run the app locally with the command:
+To see a side by side iOS and Android view of your app in the browser, run `ionic serve --lab` instead of `ionic serve`. Details on `ionic serve` can be found in the [Ionic docs](http://ionicframework.com/docs/cli/test.html).
 
-`ionic serve`
 
-Replace `FBURL` with the URL of your own Firebase.
+## Running your app
+
+You can run this app in the browser using the command `ionic serve`, or use `ionic serve --lab` to run it in the browser with a side by side iOS and Android view.
+
+To configure your app for iOS or Android and run it in the emulator, follow the instructions in our [Ionic guide](https://www.firebase.com/docs/web/libraries/ionic/guide.html).
 
 ## How it Works
 
@@ -29,19 +39,31 @@ Firebase also supports authentication with Facebook, Twitter, GitHub, Google, an
 
 #### Adding messages to a synchronized array
 
-This app uses the [`$firebaseArray`](https://www.firebase.com/docs/web/libraries/angular/guide/synchronized-arrays.html) service to store message data in a synchronized array. Using `$firebaseArray`, our local Angular array is kept in sync with our remote Firebase data. To add items to `$firebaseArray`, use the $add() method.
-
-## Running your app
-
-You can run this app in the browser using the command `ionic serve`, or use `ionic serve --lab` to run it in the browser with a side by side iOS and Android view.
-
-To run your app in the iOS or Android emulator, follow the instructions in our [documentation](https://www.firebase.com/docs/web/libraries/ionic/guide.html#section-running-in-the-emulator).
+This app uses the [`$firebaseArray`](https://www.firebase.com/docs/web/libraries/angular/guide/synchronized-arrays.html) service to store message data in a synchronized array. Using `$firebaseArray`, our local Angular array is kept in sync with our remote Firebase data. To add items to `$firebaseArray`, use the $add() method. Check out the [AngularFire documentation](https://www.firebase.com/docs/web/libraries/angular/guide/synchronized-arrays.html) for more details on how this works.
 
 ## Testing your app
 
+### Unit tests
+
+Unit tests can be found in `tests/Services/services.tests.js`. To run them, navigate to the `tests/` directory and run the command `karma start`. The tests check that both the `Auth` and `Messages` factories return `$firebaseAuth` and `$firebaseArray` respectively.
+
+### End-to-end tests
+
+End-to-end tests can be found in `e2e-tests/scenarios.js`. To run them, navigate to the `e2e/` directory and run the command `protractor protractor.conf.js`. The e2e tests check that the app loads correctly, logs users in, displays the messages list to logged in users, and adds a message to Firebase when the "Add" button is pressed.
+
 ## Securing your app
 
-This seed app has very basic security rules to ensure that only logged in users can add messages to the list. You can see them in the `rules.json` file. For more details on security rules, check out the [security quickstart](https://www.firebase.com/docs/security/quickstart.html) in our documentation.
+This seed app has two basic security rules. The first ensures that only logged in users can add messages to the list:
+
+` ".write": "auth != null"`
+
+The second rule ensures that new messages are not empty:
+
+`".validate": "newData.hasChild('text')"`
+
+`.validate` rules are run after `.write rules succeed. You can see the full rules in the `rules.json` file. If you're using Firebase Hosting to deploy your application, you can deploy your security rules file to Firebase by adding a `rules` parameter to your `firebase.json` file. Check out the [hosting documentation](https://www.firebase.com/docs/hosting/guide/full-config.html#section-advanced-properties) for details on configuring this.
+
+For more details on security rules, check out the [security quickstart](https://www.firebase.com/docs/security/quickstart.html) in our documentation.
 
 ## Deploying your app
 
@@ -69,4 +91,6 @@ To deploy your app simply run:
 
 `firebase deploy`
 
-Your app will be deployed `YOUR-APP-NAME.firebaseapp.com`. Custom domains are available for paid plans, and details on setting up custom domains can be found [here](https://www.firebase.com/docs/hosting/guide/custom-domain.html).
+Your app will be deployed to `YOUR-APP-NAME.firebaseapp.com`. Custom domains are available for paid plans, and details on setting up custom domains can be found [here](https://www.firebase.com/docs/hosting/guide/custom-domain.html).
+
+## File Structure
