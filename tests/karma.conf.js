@@ -61,6 +61,8 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    // Firebase doesn't work well with PhantomJS, since Phantom is on an old version of WebKit that doesn't support websockets
+    // Because of this Chrome is the preferred browser for testing
     browsers: ['Chrome'],
 
 

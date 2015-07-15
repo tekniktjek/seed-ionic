@@ -52,7 +52,7 @@ gulp.task('git-check', function(done) {
   done();
 });
 
-// Test tak, run test once and exit
+// Test task, run test once and exit
 gulp.task('test', function(done) {
   karma.start({
     configFile: __dirname + '/tests/my.conf.js',

@@ -9,10 +9,12 @@ describe('Services:', function() {
         beforeEach(function() {
           module(function($provide) {
 
-           // creates a spy function
+           // Creates a spy function
+
              var spyObj = jasmine.createSpy('$firebaseAuth').and.returnValue(expectedValue);
 
-           // replace the $firebaseAuth method with a mock
+           // Replaces the $firebaseAuth method with a mock
+           // The mock returns `expectedValue` so we can test the return value from the Auth factory
              $provide.value('$firebaseAuth', spyObj);
 
           });
@@ -24,7 +26,7 @@ describe('Services:', function() {
     });
 
     describe('Messages service', function() {
-        var expectedArray = {};
+        var expectedArray = [];
         var fbArray;
         beforeEach(function() {
             module(function($provide) {
