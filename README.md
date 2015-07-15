@@ -1,6 +1,8 @@
 Ionic + Firebase Seed App
 =========================
 
+![Logo](/www/img/starter-logo.png)
+
 This is a seed application to help you get started building apps with [Ionic](http://ionicframework.com/) and Firebase. Using [AngularFire](https://www.firebase.com/docs/web/libraries/angular/), this app implements email & password authentication and adds messages to a synchronized array. The app is built using the [Ionic CLI](http://ionicframework.com/docs/cli/).
 
 ## Getting Started
