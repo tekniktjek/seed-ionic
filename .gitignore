@@ -4,3 +4,4 @@
 node_modules/
 platforms/
 plugins/
+tests/npm-debug.log

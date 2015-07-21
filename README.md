@@ -94,3 +94,11 @@ To deploy your app simply run:
 Your app will be deployed to `YOUR-APP-NAME.firebaseapp.com`. Custom domains are available for paid plans, and details on setting up custom domains can be found [here](https://www.firebase.com/docs/hosting/guide/custom-domain.html).
 
 ## File Structure
+
+This app follows the structure of the blank starter template generated through the Ionic CLI. Here's an explanation of each directory:
+
+* `e2e-tests`: All of the end to end tests for our application, written using Protractor
+* `hooks`: Place any scripts for customizing cordova commands within this directory. We haven't added anything to this directory other than what came with the Ionic starter template. `hooks` are typically only used in larger projects.
+* `scss`: Using SASS is optional in Ionic apps, but you can customize and change default SCSS style in this directory.
+* `tests`: All of the unit tests for our application, written using Karma.
+* `www`: The bulk of the code for our application. All of the HTML for our app is in `index.html`. The JavaScript is in `www/js/app.js`. The CSS we've added is in `www/css/style.css` and images are in the `www/img/` directory.
