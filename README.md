@@ -61,7 +61,7 @@ The second rule ensures that new messages are not empty:
 
 `".validate": "newData.hasChild('text')"`
 
-`.validate` rules are run after `.write rules succeed. You can see the full rules in the `rules.json` file. If you're using Firebase Hosting to deploy your application, you can deploy your security rules file to Firebase by adding a `rules` parameter to your `firebase.json` file. Check out the [hosting documentation](https://www.firebase.com/docs/hosting/guide/full-config.html#section-advanced-properties) for details on configuring this.
+`.validate` rules are run after `.write` rules succeed. You can see the full rules in the `rules.json` file. If you're using Firebase Hosting to deploy your application, you can deploy your security rules file to Firebase by adding a `rules` parameter to your `firebase.json` file. Check out the [hosting documentation](https://www.firebase.com/docs/hosting/guide/full-config.html#section-advanced-properties) for details on configuring this.
 
 For more details on security rules, check out the [security quickstart](https://www.firebase.com/docs/security/quickstart.html) in our documentation.
 
